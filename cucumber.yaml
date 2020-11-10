@@ -1,0 +1,17 @@
+default: -p json -p bdd -p progress -p teste -p chrome -p cucumber --publish
+
+html: -f html -o log/report.html
+json: -f json -o log/report.json
+
+bdd: -f pretty
+progress: --format progress
+
+teste: AMBIENTE=teste
+
+chrome: BROWSER=chrome
+headless: BROWSER=headless
+internet_explorer: BROWSER=internet_explorer
+firefox: BROWSER=firefox
+firefox_headless: BROWSER=firefox_headless
+
+cucumber: features/specs/
