@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "b0d71827-fb38-4998-a176-30fe2039cef6",
+		"name": "WebMotors",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Recuperar lista de marcas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fde979f3-7571-4a55-87b8-b4eb9f74f8ad",
+						"exec": [
+							"pm.test(\"status code 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is present\", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(220);\r",
+							"});\r",
+							"\r",
+							"const dataJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"validar estrutura\", function(){\r",
+							"    pm.expect(dataJson).to.be.an(\"array\");\r",
+							"    //pm.expect(dataJson.id).to.be.a(\"number\");\r",
+							"    // pm.expect(dataJson.Name).to.be.a(\"string\");\r",
+							"\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://desafioonline.webmotors.com.br/api/OnlineChallenge/Make",
+					"protocol": "http",
+					"host": [
+						"desafioonline",
+						"webmotors",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"OnlineChallenge",
+						"Make"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filtrar marcas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d1d0d0e5-52e3-4e9b-92f8-c434e39203fc",
+						"exec": [
+							"pm.test(\"status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Content-Type header is present\", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"const dataJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"validar estrutura\", function () {\r",
+							"    pm.expect(dataJson).to.be.an(\"array\");\r",
+							"\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://desafioonline.webmotors.com.br/api/OnlineChallenge/Model?MakeID=2",
+					"protocol": "http",
+					"host": [
+						"desafioonline",
+						"webmotors",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"OnlineChallenge",
+						"Model"
+					],
+					"query": [
+						{
+							"key": "MakeID",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
